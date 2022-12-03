@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerMovement_2D : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 5.0f;
-    [SerializeField] private float jumpPower = 2.0f;
+    [SerializeField] private float jumpPower = 1.0f;
+
+    bool IsGrounded;
+    float Counter;
 
     private Rigidbody2D _playerRigidbody;
     private void Start()
@@ -19,20 +22,24 @@ public class PlayerMovement_2D : MonoBehaviour
     private void Update()
     {
         MovePlayer();
-
+ 
         if (Input.GetKey("space"))
-        {
-            Jump();
+        { 
+            Jump(); 
         }
     }
     private void MovePlayer()
     {
         var horizontalInput = Input.GetAxisRaw("Horizontal");
         _playerRigidbody.velocity = new Vector2(horizontalInput * playerSpeed, _playerRigidbody.velocity.y);
+
     }
 
-    private void Jump() => _playerRigidbody.velocity = new Vector2(0, jumpPower);
+    private void Jump()
+    {
+        _playerRigidbody.velocity = new Vector2(0, jumpPower);
 
+    }
 }
 
 
