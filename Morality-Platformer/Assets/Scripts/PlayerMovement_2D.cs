@@ -7,25 +7,22 @@ public class PlayerMovement_2D : MonoBehaviour
     [SerializeField] private float playerSpeed = 5.0f;
     [SerializeField] private float jumpPower = 1.0f;
 
-    bool IsGrounded;
-    float Counter;
-
-    private Rigidbody2D _playerRigidbody;
+    private Rigidbody _playerRigidbody;
     private void Start()
-    {
-        _playerRigidbody = GetComponent<Rigidbody2D>();
+    { 
+        _playerRigidbody = GetComponent<Rigidbody>();
         if (_playerRigidbody == null)
         {
-            Debug.LogError("Player is missing a Rigidbody2D component");
+            Debug.LogError("Player is missing a Rigidbody component");
         }
     }
     private void Update()
     {
         MovePlayer();
- 
+
         if (Input.GetKey("space"))
-        { 
-            Jump(); 
+        {
+            Jump();
         }
     }
     private void MovePlayer()
@@ -38,7 +35,6 @@ public class PlayerMovement_2D : MonoBehaviour
     private void Jump()
     {
         _playerRigidbody.velocity = new Vector2(0, jumpPower);
-
     }
 }
 
